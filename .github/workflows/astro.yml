@@ -17,14 +17,16 @@ jobs:
       - name: Checkout your repository
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10.7.0
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'pnpm'
-
-      - name: Install pnpm
-        run: npm install -g pnpm@10.7.0
 
       - name: Verificar versión de Node y pnpm
         run: |
