@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22  # Lo más cercano a 22.14.0 en GitHub Actions
+          node-version: 22
           cache: 'pnpm'
 
       - name: Install pnpm
@@ -49,6 +49,9 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
       - name: Deploy a GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

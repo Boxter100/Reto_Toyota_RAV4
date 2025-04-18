@@ -2,9 +2,8 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
-// https://astro.build/config
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://boxter100.github.io',
-  base: 'Reto_Toyota_RAV4',
+  site: 'https://boxter100.github.io/Reto_Toyota_RAV4',
+  base: '/Reto_Toyota_RAV4/', // <- con slashes
 });
