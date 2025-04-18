@@ -35,21 +35,18 @@
 </section>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const recaudado = 25000;
-    const costoTotal = 811800;
-    const porcentaje = ((recaudado / costoTotal) * 100).toFixed(2);
-    const radio = 60;
-    const circunferencia = 2 * Math.PI * radio;
-    const progreso = circunferencia - (porcentaje / 100) * circunferencia;
+  const recaudado = 25000;
+  const costoTotal = 811800;
+  const porcentaje = ((recaudado / costoTotal) * 100).toFixed(2);
+  const radio = 60;
+  const circunferencia = 2 * Math.PI * radio;
+  const progreso = circunferencia - (porcentaje / 100) * circunferencia;
 
-    const circle = document.getElementById("progreso");
-    circle.style.strokeDasharray = circunferencia;
-    circle.style.strokeDashoffset = progreso;
+  const circle = document.getElementById("progreso");
+  circle.style.strokeDasharray = circunferencia;
+  circle.style.strokeDashoffset = progreso;
 
-    document.getElementById("porcentajeTexto").textContent = `${porcentaje}%`;
-    document.getElementById("montoRecaudado").textContent = `$${recaudado.toLocaleString()} MXN`;
-    document.getElementById("montoTotal").textContent = `de $${costoTotal.toLocaleString()} MXN`;
-  });
+  document.getElementById("porcentajeTexto").textContent = `${porcentaje}%`;
+  document.getElementById("montoRecaudado").textContent = `$${recaudado.toLocaleString()} MXN`;
+  document.getElementById("montoTotal").textContent = `de $${costoTotal.toLocaleString()} MXN`;
 </script>
-
