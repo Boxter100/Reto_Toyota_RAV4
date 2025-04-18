@@ -1,0 +1,54 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22  # Lo más cercano a 22.14.0 en GitHub Actions
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@10.7.0
+
+      - name: Verificar versión de Node y pnpm
+        run: |
+          node -v
+          pnpm -v
+
+      - name: Instalar dependencias
+        run: pnpm install
+
+      - name: Build del proyecto Astro
+        run: pnpm run build
+
+      - name: Subir artefacto para GitHub Pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
